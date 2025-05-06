@@ -1,25 +1,23 @@
 name: Run TestRigor Test
 
 on:
-  workflow_dispatch: {}
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
   run-test:
     runs-on: ubuntu-latest
     steps:
-      - name: Print inputs
-        env:
-          API_TOKEN: ${{ secrets.TESTRIGOR_API_TOKEN }}
+      - name: Create payload file
         run: |
-          echo "Suite ID: ${{ secrets.TESTRIGOR_SUITE_ID }}"
-          echo "API Token starts with: ${API_TOKEN:0:4}..."
+          echo "{\"test_suite_id\":\"${{ secrets.TESTRIGOR_SUITE_ID }}\",\"test_case_name\":[\"Demo_WebShop\"]}" > payload.json
 
       - name: Trigger TestRigor Test
         run: |
           echo "Triggering TestRigor..."
           set -e
-          RESPONSE=$(curl -s -w "\nHTTP_STATUS_CODE:%{http_code}\n" -X POST "https://app.testrigor.com/api/v1/tests/run" -H "Authorization: Token ${{ secrets.TESTRIGOR_API_TOKEN }}" -H "Content-Type: application/json" --data "{\"test_suite_id\":\"${{ secrets.TESTRIGOR_SUITE_ID }}\",\"test_case_name\":[\"Demo_WebShop\"]}")
-          echo "$RESPONSE
+          RESPONSE=$(curl -s -w "\nHTTP_STATUS_CODE:%{http_code}\n" \
+            -X POST "https://app.testrigor.com/api/v1/tests/run" \
+            -H "Authorization: Token ${{ secrets.TESTRIGOR_API_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            --data @payload.json)
+          echo "$RESPONSE"

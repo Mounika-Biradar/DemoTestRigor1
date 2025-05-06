@@ -23,4 +23,4 @@ jobs:
         curl -X POST "https://app.testrigor.com/api/v1/tests/run" \
         -H "Authorization: Token ${{ secrets.TESTRIGOR_API_TOKEN }}" \
         -H "Content-Type: application/json" \
-        --data "{"\test_suite_id\": \"${{ secrets.TESTRIGOR_SUITE_ID }}\",\"test_case_name\":\"Demo_WebShop\"}"
+        --data "{"\test_suite_id\": \"${{ secrets.TESTRIGOR_SUITE_ID }}\",\"test_case_name\":[\"Demo_WebShop\"]}"

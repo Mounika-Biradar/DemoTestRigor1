@@ -11,7 +11,7 @@ jobs:
 
     steps:
     - name: Print inputs
-       env:
+      env:
           API_TOKEN: ${{secrets.TESTRIGOR_API_TOKEN}}
       run: |
         echo "Suite ID: ${{ secrets.TESTRIGOR_SUITE_ID }}"

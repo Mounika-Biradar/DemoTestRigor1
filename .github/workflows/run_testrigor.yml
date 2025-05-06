@@ -1,8 +1,6 @@
-
-
 name: Run TestRigor Test
+
 on:
-  workflow_dispatch:
   push:
     branches:
       - main
@@ -22,4 +20,3 @@ jobs:
               "test_suite_id": "'${{ secrets.TESTRIGOR_SUITE_ID }}'",
               "test_case_name": "Demo_WebShop"
             }' -i
-

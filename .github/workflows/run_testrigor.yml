@@ -10,13 +10,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Print inputs
+      run: |
+        echo "Suite ID: ${{ secrets.TESTRIGOR_SUITE_ID }}"
+        echo "API Token starts with: ${${{ secrets.TESTRIGOR_API_TOKEN }}:0:4}..." # Truncated for safety
+
     - name: Trigger TestRigor Test
       run: |
-        echo "Calling TestRigor API..."
+        echo "Triggering TestRigor..."
         curl -X POST "https://app.testrigor.com/api/v1/tests/run" \
         -H "Authorization: Token ${{ secrets.TESTRIGOR_API_TOKEN }}" \
         -H "Content-Type: application/json" \
-        -d '{
-              "test_suite_id": "'${{ secrets.TESTRIGOR_SUITE_ID }}'",
-              "test_case_name": "Demo_WebShop"
-            }' -i
+        --data '{"test_suite_id": "'"${{ secrets.TESTRIGOR_SUITE_ID }}"'", "test_case_name": "Demo_WebShop"}'

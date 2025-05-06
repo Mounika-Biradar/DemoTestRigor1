@@ -11,11 +11,11 @@ jobs:
 
     steps:
     - name: Print inputs
+       env:
+          API_TOKEN: ${{secrets.TESTRIGOR_API_TOKEN}}
       run: |
         echo "Suite ID: ${{ secrets.TESTRIGOR_SUITE_ID }}"
         echo "API Token starts with: ${API_TOKEN:0:4}..." # Truncated for safety
-        env:
-          API_TOKEN: ${{secrets.TESTRIGOR_API_TOKEN}}
 
     - name: Trigger TestRigor Test
       run: |

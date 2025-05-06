@@ -13,7 +13,7 @@ jobs:
     - name: Print inputs
       run: |
         echo "Suite ID: ${{ secrets.TESTRIGOR_SUITE_ID }}"
-        echo "API Token starts with: ${${{ secrets.TESTRIGOR_API_TOKEN }}:0:4}..." # Truncated for safety
+        echo "API Token: ${{ secrets.TESTRIGOR_API_TOKEN }}" # Truncated for safety
 
     - name: Trigger TestRigor Test
       run: |

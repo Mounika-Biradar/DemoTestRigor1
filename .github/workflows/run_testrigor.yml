@@ -14,9 +14,8 @@ jobs:
       - name: Call TestRigor API
         run: |
           curl -X POST "https://app.testrigor.com/api/v1/tests/run" \
-          -H "Authorization: Token ${{ secrets.TESTRIGOR_API_TOKEN }}" \
+          -H "Authorization: Bearer ${{ secrets.TESTRIGOR_API_TOKEN }}" \
           -H "Content-Type: application/json" \
           -d '{
                 "test_suite_id": "${{ secrets.TESTRIGOR_SUITE_ID }}",
-                "test_case_name": "Demo_WebShop"
-              }' -v
+              }'

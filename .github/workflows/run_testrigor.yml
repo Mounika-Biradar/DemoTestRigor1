@@ -19,4 +19,4 @@ jobs:
           -d '{
                 "test_suite_id": "${{ secrets.TESTRIGOR_SUITE_ID }}",
                 "test_case_name": "Demo_WebShop"
-              }'
+              }' -v

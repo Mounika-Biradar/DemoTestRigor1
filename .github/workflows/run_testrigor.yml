@@ -1,6 +1,7 @@
 name: Run TestRigor Test
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main

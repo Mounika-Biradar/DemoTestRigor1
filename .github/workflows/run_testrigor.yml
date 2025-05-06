@@ -20,9 +20,6 @@ jobs:
       - name: Trigger TestRigor Test
         run: |
           echo "Triggering TestRigor..."
-          set -e # Fail on any error
-          RESPONSE=$(curl -s -w "\nHTTP_STATUS_CODE:%{http_code}\n" -X POST "https://app.testrigor.com/api/v1/tests/run" \
-            -H "Authorization: Token ${{ secrets.TESTRIGOR_API_TOKEN }}" \
-            -H "Content-Type: application/json" \
-            --data "{\"test_suite_id\":\"${{ secrets.TESTRIGOR_SUITE_ID }}\",\"test_case_name\":[\"Demo_WebShop\"]}"
-          echo "$RESPONSE"
+          set -e
+          RESPONSE=$(curl -s -w "\nHTTP_STATUS_CODE:%{http_code}\n" -X POST "https://app.testrigor.com/api/v1/tests/run" -H "Authorization: Token ${{ secrets.TESTRIGOR_API_TOKEN }}" -H "Content-Type: application/json" --data "{\"test_suite_id\":\"${{ secrets.TESTRIGOR_SUITE_ID }}\",\"test_case_name\":[\"Demo_WebShop\"]}")
+          echo "$RESPONSE
